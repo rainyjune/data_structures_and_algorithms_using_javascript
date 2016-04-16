@@ -22,9 +22,15 @@ function find(item) {
 function insert(newElement, item) {
   var newNode = new Node(newElement);
   var current = this.find(item);
+  var nextNode = current.next;
+  
+  if(nextNode) {
+    nextNode.previous = newNode;
+  }
+  
   newNode.next = current.next;
   newNode.previous = current;
-  current.next = newNode;
+  current.next = newNode; 
 }
 
 function display() {
