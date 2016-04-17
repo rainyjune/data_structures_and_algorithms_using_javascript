@@ -9,6 +9,9 @@ function LList() {
   this.find = find;
   this.insert = insert;
   this.display = display;
+  this.dispReverse = dispReverse;
+  this.findLast = findLast;
+  this.remove = remove;
 }
 
 function find(item) {
@@ -41,3 +44,29 @@ function display() {
   }
 }
 
+function dispReverse() {
+  var currNode = this.head;
+  currNode = this.findLast();
+  while(currNode.previous != null) {
+    console.log("Current:", currNode.element);
+    currNode = currNode.previous;
+  }
+}
+
+function remove(item) {
+  var currNode = this.find(item);
+  currNode.previous.next = currNode.next;
+  if (currNode.next != null) {
+    currNode.next.previous = currNode.previous;
+  }
+  currNode.previous = null;
+  currNode.next = null;
+}
+
+function findLast() {
+  var currNode = this.head;
+  while(currNode.next != null) {
+    currNode = currNode.next;
+  }
+  return currNode;
+}
